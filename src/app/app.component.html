@@ -9,7 +9,7 @@
     </li>
   </ul>
 </nav>
-<div class="container">
-  <span class="fa fa-spinner spinner"  *ngIf="dataService?.isLoading"></span>
-  <router-outlet></router-outlet>
+<div class="container" [@slideInAnimation]="o.isActivated ? o.activatedRoute : ''">
+  <span class="fa fa-spinner spinner" *ngIf="dataService?.isLoading"></span>
+  <router-outlet #o="outlet"></router-outlet>
 </div>
