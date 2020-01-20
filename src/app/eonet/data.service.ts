@@ -16,7 +16,7 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   getAllEonetEvents(): Observable<any[]> {
-    return this.http.get<any[]>(`$${this.url}?limit=50`);
+    return this.http.get<any[]>(this.url + '?limit=50');
   }
 
   getEonetEventById(id): Observable<Eonet> {
@@ -26,8 +26,7 @@ export class DataService {
           id: b.id,
           title: b.title,
           link: b.link,
-          date: b.geometries ? new Date(b.geometries[0].date) : '',
-          type: b.geometries ? b.geometries[0].type : ''
+          date: b.geometries ? new Date(b.geometries[0].date) : ''
         })
       );
   }

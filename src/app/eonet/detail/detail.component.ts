@@ -1,3 +1,4 @@
+import { Eonet } from './../eonet';
 import { DataService } from './../data.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,14 +10,17 @@ import { Component, OnInit } from '@angular/core';
 export class DetailComponent implements OnInit {
 
   constructor(private dataService: DataService) { }
-
+  eonet: Eonet;
   ngOnInit() {
     this.dataService.getEonetEventById('EONET_4557').subscribe(
-      (data) => {
-        console.log(data);
+      (data: Eonet) => {
+        this.eonet = data;
       },
       (error) => {
         console.log(error);
+      },
+      () => {
+        console.log(this.eonet);
       }
     );
   }

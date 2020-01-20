@@ -1,5 +1,6 @@
 import { DataService } from './../data.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -8,12 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private router: Router) { }
+  eonetList = [];
 
   ngOnInit() {
     this.dataService.getAllEonetEvents().subscribe(
       (data) => {
-        console.log(data);
+        this.eonetList = (data as any).events;
       },
       (error) => {
         console.log(error);
@@ -21,4 +23,8 @@ export class ListComponent implements OnInit {
     );
   }
 
+  moreInformation(id) {
+    this.router.navigate(['/list', id]);
+
+  }
 }

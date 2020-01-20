@@ -1,3 +1,24 @@
-<p>
-  detail works!
-</p>
+<table class="table table-bordered test">
+  <tbody>
+      <tr>
+        <td>id</td>
+        <td>{{eonet?.id}}</td>
+      </tr>
+      <tr>
+        <td>title</td>
+        <td>{{eonet?.title}}</td>
+      </tr>
+      <tr>
+        <td>link  </td>
+        <td>{{eonet?.link}}</td>
+      </tr>
+      <tr>
+        <td>date</td>
+        <td>{{eonet?.date}}</td>
+      </tr>
+  </tbody>
+</table>
+
+<button [routerLink]="['/list']">
+  Back to the list
+</button>

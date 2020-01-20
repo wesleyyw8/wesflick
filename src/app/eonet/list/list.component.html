@@ -1,34 +1,22 @@
-<table class="table table-bordered" >
+<table class="table table-bordered" *ngFor="let eonet of eonetList">
   <tbody>
-    <tr>
-      <td>id</td>
-      <td>asdasd</td>
-    </tr>
-    <tr>
-      <td>title</td>
-      <td>asdasd</td>
-    </tr>
-    <tr>
-      <td>link  </td>
-      <td>asdasd</td>
-    </tr>
-    <tr>
-      <td>date</td>
-      <td>12/12/12</td>
-    </tr> 
-    <tr>
-      <td>type</td>
-      <td>point</td>
-    </tr>
-    <tr>
-      <td>coordinates</td>
-      <td>1231 1231</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>
-        <button>More information</button>
-      </td>
-    </tr>
+      <tr>
+        <td>id</td>
+        <td>{{eonet.id}}</td>
+      </tr>
+      <tr>
+        <td>title</td>
+        <td>{{eonet.title}}</td>
+      </tr>
+      <tr>
+        <td>link  </td>
+        <td>{{eonet.link}}</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <button (click)="moreInformation(eonet.id)">More information</button>
+        </td>
+      </tr>
   </tbody>
 </table>
