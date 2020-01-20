@@ -11,7 +11,7 @@ const routes: Routes = [{
   redirectTo: 'welcome',
   pathMatch: 'full'
 }, {
-  path: 'eonet',
+  path: 'list',
   loadChildren: () =>
     import('./eonet/eonet.module').then(m => m.EonetModule)
 },
