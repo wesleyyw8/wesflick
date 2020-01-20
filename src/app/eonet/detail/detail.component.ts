@@ -18,9 +18,6 @@ export class DetailComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-      },
-      () => {
-        console.log(this.eonet);
       }
     );
   }

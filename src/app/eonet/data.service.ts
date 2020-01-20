@@ -12,14 +12,22 @@ export class DataService {
     Accept: 'application/json'
   });
   private url = 'https://eonet.sci.gsfc.nasa.gov/api/v2.1/events';
-
+  public isLoading = true;
   constructor(private http: HttpClient) { }
 
   getAllEonetEvents(): Observable<any[]> {
-    return this.http.get<any[]>(this.url + '?limit=50');
+    //console.log('getall events');
+    //this.isLoading = true;
+    return this.http.get<any[]>(this.url + '?limit=50')
+      .pipe(
+        tap(data => {
+          this.isLoading = false;
+        })
+      );
   }
 
   getEonetEventById(id): Observable<Eonet> {
+    //this.isLoading = true;
     return this.http.get<any[any]>(`${this.url}/${id}`)
       .pipe(
         map(b => <Eonet> {
@@ -27,7 +35,9 @@ export class DataService {
           title: b.title,
           link: b.link,
           date: b.geometries ? new Date(b.geometries[0].date) : ''
-        })
-      );
+        }),
+        tap(data => {
+          this.isLoading = false;
+        }));
   }
 }
