@@ -1,9 +1,19 @@
-<div>
-  <label>Filtered by:</label>
+<div class="filter-container" *ngIf="eonetList.length > 0">
   <div>
-    <select name="filter" [(ngModel)]="selectedFilter" (change)="onChange($event.target.value)"> 
-      <option *ngFor="let filter of filterBy" >{{filter.value}}</option> 
-  </select> 
+    <label>Filtered by:</label>
+    <div>
+      <select name="filter" [(ngModel)]="selectedFilter" (change)="onChange($event.target.value)"> 
+        <option *ngFor="let filter of filterBy" >{{filter.value}}</option> 
+    </select> 
+    </div>
+  </div>
+  <div>
+    <label>Order by:</label>
+    <div>
+      <select name="filter" (change)="sortByChange($event.target.value)"> 
+        <option *ngFor="let order of orderBy" >{{order}}</option> 
+    </select> 
+    </div>
   </div>
 </div>
 <table class="table table-bordered" [ngClass]="{'table-dark': eonet.closed}" *ngFor="let eonet of eonetList">
@@ -19,6 +29,10 @@
     <tr>
       <td>link </td>
       <td>{{eonet.link}}</td>
+    </tr>
+    <tr>
+      <td>date</td>
+      <td>{{eonet.geometries[0].date}}</td>
     </tr>
     <tr>
       <td></td>

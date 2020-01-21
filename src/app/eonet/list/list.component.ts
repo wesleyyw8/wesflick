@@ -24,8 +24,9 @@ export class ListComponent implements OnInit {
   }, {
     key: 'status',
     value: 'closed'
-  }
-  ];
+  }];
+
+  orderBy = ['Select Option', 'desc', 'asd'];
 
   ngOnInit() {
     this.selectedFilter = this.filterBy[0].value;
@@ -52,6 +53,26 @@ export class ListComponent implements OnInit {
       },
       () => console.log('list loaded')
     );
+  }
+
+
+  sortByChange(value) {
+    switch (value) {
+      case 'asd': this.eonetList = this.eonetList.sort(this.sortAsd); break;
+      case 'desc': this.eonetList = this.eonetList.sort(this.sortDesc); break;
+    }
+  }
+
+  private sortDesc(a, b) {
+    a = new Date(a.geometries[0].date);
+    b = new Date(b.geometries[0].date);
+    return a > b ? -1 : a < b ? 1 : 0;
+  }
+
+  private sortAsd(a, b) {
+    a = new Date(a.geometries[0].date);
+    b = new Date(b.geometries[0].date);
+    return a < b ? -1 : a > b ? 1 : 0;
   }
 
   moreInformation(id) {
