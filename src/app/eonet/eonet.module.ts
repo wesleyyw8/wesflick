@@ -4,10 +4,12 @@ import { DetailComponent } from './detail/detail.component';
 import { ListComponent } from './list/list.component';
 import { RouterModule } from '@angular/router';
 import { DataService } from './data.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild([{
       path: '',
       component: ListComponent

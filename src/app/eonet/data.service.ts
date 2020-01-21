@@ -15,10 +15,9 @@ export class DataService {
   public isLoading = true;
   constructor(private http: HttpClient) { }
 
-  getAllEonetEvents(): Observable<any[]> {
-    //console.log('getall events');
-    //this.isLoading = true;
-    return this.http.get<any[]>(this.url + '?limit=50')
+  getAllEonetEvents(filter): Observable<any[]> {
+    this.isLoading = true;
+    return this.http.get<any[]>(this.url + '?' + filter + '&limit=50')
       .pipe(
         tap(data => {
           this.isLoading = false;
@@ -27,14 +26,13 @@ export class DataService {
   }
 
   getEonetEventById(id): Observable<Eonet> {
-    //this.isLoading = true;
     return this.http.get<any[any]>(`${this.url}/${id}`)
       .pipe(
         map(b => <Eonet> {
           id: b.id,
           title: b.title,
           link: b.link,
-          date: b.geometries ? new Date(b.geometries[0].date) : ''
+          date: b.geometries ? b.geometries[0].date.slice(0, 10).split('-').toString().replace(/,/g, '/') : ''
         }),
         tap(data => {
           this.isLoading = false;

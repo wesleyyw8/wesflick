@@ -1,22 +1,30 @@
-<table class="table table-bordered" *ngFor="let eonet of eonetList">
+<div>
+  <label>Filtered by:</label>
+  <div>
+    <select name="filter" [(ngModel)]="selectedFilter" (change)="onChange($event.target.value)"> 
+      <option *ngFor="let filter of filterBy" >{{filter.value}}</option> 
+  </select> 
+  </div>
+</div>
+<table class="table table-bordered" [ngClass]="{'table-dark': eonet.closed}" *ngFor="let eonet of eonetList">
   <tbody>
-      <tr>
-        <td>id</td>
-        <td>{{eonet.id}}</td>
-      </tr>
-      <tr>
-        <td>title</td>
-        <td>{{eonet.title}}</td>
-      </tr>
-      <tr>
-        <td>link  </td>
-        <td>{{eonet.link}}</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>
-          <button (click)="moreInformation(eonet.id)">More information</button>
-        </td>
-      </tr>
+    <tr>
+      <td>id</td>
+      <td>{{eonet.id}}</td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td>{{eonet.title}}</td>
+    </tr>
+    <tr>
+      <td>link </td>
+      <td>{{eonet.link}}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button (click)="moreInformation(eonet.id)">More information</button>
+      </td>
+    </tr>
   </tbody>
 </table>
